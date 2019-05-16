@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //将函数作为参数
+    //当前方法执行完毕可以做的一些事情
+    myAjax({
+        success:function (data) {
+            console.log(data);
+        }
+    });
+    function myAjax(options) {
+        let _default = {
+            type: "get",
+            success: null
+        };
+
+        for(let key in options){
+            if (options.hasOwnProperty(key)){
+                _default[key] = options[key];
+            }
+        }
+
+        //这个函数存在并且把这个函数执行
+        _default.success &&_default.success.call(1,200);
+
+    }
+
+
+    function f1(callBack) {
+        let num = 1;
+        callBack && callBack(num);
+    }
+
+    f1(function (a) {
+        console.log(a);
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //浏览器先去加载HTML,CSS，JS ，形成DOM树
+    //重绘：一般是当前页面样式发生改变   div.style.color = "red";
+    //避免重绘：尽量使用className去操作   div.classNmar = "bg";
+
+    //回流：当前HTML文档的结构发生改变，操作节点，元素显示隐藏，宽度高度等改变
+    //一般引起DOM的回流更多是在数据绑定中
+    //
+
+    //数据绑定的方式
+    //字符串拼接
+    //缺点：会引发多次DOM回流，每次引发DOM回流浏览器都会重新计算页面结构
+    //不占性能
+    //文档碎片
+    //好处：减少DOM回流次数
+    //文档碎片比较多也会占用浏览器的性能，最后我们用完的时候手动释放
+    var str= "";
+    var frag = document.createDocumentFragment();
+    for (var i = 0;i<100;i++){
+        var curLi = document.createElement("li");
+        str += curLi;
+    }
+    //只回流一次
+    document.appendChild(str);
+    //手动释放
+    frag = null;
+
+
+    //一般真实项目中字符串拼接的方式+文档碎片的方式
+
+
+
+
+</script>
+</body>
+</html>

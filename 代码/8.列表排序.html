@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,li{
+            list-style-type: none;
+        }
+
+        ul li:nth-child(odd){
+            background-color: red;
+        }
+
+        .production{
+            width: 600px;
+            margin: 0 auto;
+            border: 1px solid gray;
+            overflow: hidden;
+        }
+        
+        .production div{
+            float: left;
+            margin-right: 40px;
+        }
+    </style>
+</head>
+<body>
+<div  class="production">
+    <div class="production-1">
+        <input type="button" value="数量">
+        <ul>
+            <li>100</li>
+            <li>200</li>
+            <li>20</li>
+            <li>10</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="production-2">
+        <input type="button" value="价格">
+        <ul>
+            <li>50</li>
+            <li>20</li>
+            <li>30</li>
+            <li>45</li>
+            <li>54</li>
+        </ul>
+    </div>
+    <div class="production-3">
+        <input type="button" value="名字">
+        <ul>
+            <li>赵</li>
+            <li>钱</li>
+            <li>孙</li>
+            <li>李</li>
+            <li>周</li>
+        </ul>
+    </div>
+</div>
+<script>
+    var uls = document.getElementsByTagName("ul");
+    var btns = document.getElementsByTagName("input");
+
+
+    for (var i = 0; i <btns.length ; i++) {
+        btns[i].flag = -1;
+        btns[i].index = i;
+        btns[i].onclick = function () {
+            sort.call(this,this.index)
+        }
+    }
+
+    //作比较的  比较字符
+    function comePare(a,b) {
+        var num1 =  parseFloat(a.innerHTML);
+        var num2 = parseFloat(b.innerHTML);
+        // var char1 =  a.innerHTML;
+        // var char2 = b.innerHTML;
+        // if (isNaN(char1) && isNaN(char2)){
+        //     return  (char1.charCodeAt(0) - char2.charCodeAt(0))*this.flag;
+        // } else {
+            return (num1 - num2) * this.flag;
+        // }
+    }
+
+
+    function sort(n) {
+        var _this = this;
+        console.log(_this.nextElementSibling.children);
+        var arr = Array.prototype.slice.call(this.nextElementSibling.children);
+        this.flag *= -1;
+        arr.sort(function (a,b) {
+            return  comePare.call(_this,a,b);
+        });
+
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i <arr.length ; i++) {
+            var curLi = arr[i];
+            frag.appendChild(curLi);
+        }
+        uls[n].appendChild(frag);
+        frag = null;
+    }
+
+</script>
+</body>
+</html>

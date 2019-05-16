@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery.js"></script>
+<script>
+    //data：可以是字符串  可以是对象
+    //给服务器发送的请求参数，或者是post中请求主体内容
+    $.ajax({
+        type:"post",
+        url:"data.json",
+        data:{name:"RC"},
+        dataType:"json",
+        success:function (data) {
+
+        },
+        error:function (err) {
+
+        }
+    });
+
+
+</script>
+</body>
+</html>
